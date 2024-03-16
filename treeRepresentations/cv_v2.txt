@@ -1,0 +1,404 @@
+mPuCzdZC4HjjKvtaX
+WGdhwKZnCu7aKhXq9 M: └──  user added theme options. same as previous submission
+inv1 C:     ├──  visible in profile
+inv2 C:     │   └──  all u:User | u.profile.source in Institution+u
+inv4 S:     │       └──  all u:user | all disj w1,w2 : u.profile | no (w1.ids & w2.ids)
+<<<<<<< HEAD
+wNw5DfXueZX9Nk3pr N:     │           └──  user added extra characters to pred name
+inv4 O:     │               └──  all u:User | all disj w1,w2 : u.profile | no (w1.ids & w2.ids)
+ED4gx4yyqFE9nWc2q N:     │                   └──  user added extra characters to pred name
+=======
+inv3 U:     │           └──  
+inv4 O:     │               └──  all u:User | all disj w1,w2 : u.profile | no (w1.ids & w2.ids)
+inv4 U:     │                   └──  
+>>>>>>> 61e1676bc22bed3288d554850d364801014318e0
+inv3 C:     │                       └──  all u:User, s:Source | all disj w1,w2:(u.profile & source.s) | no (w1.ids & w2.ids)
+inv4 B:     │                           └──  all u:User | all disj w1,w2 : u.visible | no (w1.ids & w2.ids)
+inv4 O:     │                               └──  all u:User | all disj w1,w2 : u.(visible + profile) | no (w1.ids & w2.ids)
+inv4 B:     │                                   └──  all u:User | all disj w1,w2 : u.(visible) | no (w1.ids & w2.ids)
+inv4 O:     │                                       └──  all u:User | all disj w1,w2 : u.profile | no (w1.ids & w2.ids)
+inv4 B:     │                                           └──  all u:User | all disj w1,w2 : u.profile | w1.ids != w2.ids
+inv1 T:     ├──  all w : Work | visible.w implies some profile.w
+inv1 T:     │   └──  all w : Work | visible.w implies some profile.w
+inv1 U:     │       └──  all w : Work | some visible.w implies some profile.w
+inv1 C:     ├──  all u: User | u.visible in u.profile
+inv2 U:     │   └──  all w: User.profile | w.source in User or w.source in Institution
+inv2 T:     │       └──  all w: Work | some u: User, s: Source | w in u.profile implies w.source in u or s
+inv2 T:     │           └──  all w: Work | some u: User | w in u.profile implies w.source in u or Institution
+inv2 B:     │               └──  all w: Work | some u: User | w in u.profile implies w.source in u or w.source in Institution
+inv2 B:     │                   └──  all w: Work | one u: User | w in u.profile implies w.source in u or w.source in Institution
+inv2 S:     │                       └──  None
+inv2 S:     │                           └──  None
+inv2 S:     │                               └──  None
+inv2 O:     │                                   └──  all u: User | u.profile.source in u or u.profile.source in Institution
+inv2 C:     │                                       └──  all u: User | u.profile.source in u + Institution
+inv2 O:     │                                           └──  all u: User | u.profile.source in u or (u.profile.source in Institution)
+inv2 O:     │                                               └──  all u: User | (u.profile.source in u) or (u.profile.source in Institution)
+inv2 C:     │                                                   └──  all u: User | u.profile.source in u + Institution
+inv3 T:     │                                                       └──  all w: Work, u: User | lone w.ids in (u.profile.source & w.source)
+inv3 T:     │                                                           └──  all w: Work, u: User | lone w.ids in (u.profile.source & w.source)
+inv3 C:     │                                                               └──  all s: Source, u: User | all disj w1, w2: (u.profile & source.s) | no w1.ids & w2.ids
+inv4 U:     │                                                                   └──  always (all u : User | all disj v1, v2 : (u.profile & u.visible) | no (v1.ids & v2.ids))
+inv4 U:     │                                                                       └──  (all u : User | all disj v1, v2 : (u.profile & u.visible) | no (v1.ids & v2.ids))
+inv4 C:     │                                                                           └──  all u: User | u.visible<:^((u.profile<:ids).~(u.profile<:ids)):>u.visible in iden
+inv3 O:     │                                                                               └──  all s: Source, u: User | all disj w1, w2: (u.profile & source.s) | no w1.ids
+inv3 C:     │                                                                                   └──  all s: Source, u: User | all disj w1, w2: (u.profile & source.s) | no w1.ids & w2.ids
+inv4 C:     │                                                                                       └──  all u: User | u.visible<:^((u.profile<:ids).~(u.profile<:ids)):>u.visible in iden
+inv1 C:     ├──  all u:User | u.visible in u.profile
+inv2 C:     │   └──  all u:User | no ((u.profile.source) - Institution - u)
+inv3 S:     │       └──  all disj w1,w2 : Work | w1.id != w2.id
+inv3 B:     │           └──  all disj w1,w2 : Work | w1.ids != w2.ids
+inv3 O:     │               └──  all u:User , disj w1,w2:(u.profile) | w1.ids = w1.ids-w2.ids
+inv3 O:     │                   └──  all u:User , disj w1,w2:(u.profile) | w1.ids = w1.ids-w2.ids
+inv3 O:     │                       └──  all u:User , disj w1,w2:(u.profile) | (w1.ids = w1.ids-w2.ids) and (w2.ids = w2.ids-w1.ids)
+inv4 T:     │                           └──  all w:Work | (w in User.profile and w in User.visible) implies (one w in User.visible)
+inv4 T:     │                               └──  all w:Work | (w in User.profile & w in User.visible) implies (one w in User.visible)
+inv4 T:     │                                   └──  all w:Work | ((w in User.profile) & (w in User.visible)) implies (one w in User.visible)
+inv4 T:     │                                       └──  all w:Work | ((w in User.profile) & (w in User.visible)) implies ( w in User.visible)
+inv4 B:     │                                           └──  all w:Work | ((w in User.profile)) implies ( w in User.visible)
+inv4 U:     │                                               └──  all w:Work | ((w in User.profile) and (w in User.visible)) implies ( w in User.visible)
+inv1 U:     ├──  all u:User | User.visible in User.profile
+inv1 C:     │   └──  all u:User | u.visible in u.profile
+inv2 C:     │       └──  all u:User |all w:Work | w in u.profile implies (w.source in u or w.source in Institution)
+inv3 B:     │           └──  all disj w1,w2:Source.profile | w1.ids != w2.ids
+inv3 B:     │               └──  all w1,w2:Source.profile | w1.ids = w2.ids implies w1=w2
+inv3 B:     │                   └──  all w1,w2:Source.profile | w1.ids = w2.ids implies w1=w2
+inv4 O:     │                       └──  all u:User | all w1,w2 : u.profile | (w1 in u.visible and w2 in u.visible) implies w1=w2
+inv1 U:     ├──  visible.Work in profile.Work
+inv1 C:     │   └──  visible in profile
+inv2 T:     │       └──  profile.~profile in iden + Institution
+inv2 O:     │           └──  profile.~profile in iden and profile.Work in Institution
+inv2 B:     │               └──  profile.~profile in iden and User.profile.source in (User + Institution)
+inv3 C:     │                   └──  all s: Source, u: User| ((source.s & u.profile)<:ids).~((source.s & u.profile)<:ids) in iden
+inv3 C:     │                       └──  all s: Source, u: User| ((source.s & u.profile)<:ids).~((source.s & u.profile)<:ids) in iden
+inv4 O:     │                           └──  all u : User | ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 T:     │                               └──  all u : User | ^((u.profile&u.visible<:ids).~(u.profile&u.visible<:ids)) in iden
+inv4 U:     │                                   └──  all u : User | ^(((u.profile&u.visible)<:ids).~((u.profile&u.visible)<:ids)) in iden
+inv4 C:     │                                       └──  all u : User | u.visible<:^((u.profile<:ids).~(u.profile<:ids)):>u.visible in iden
+inv4 C:     ├──  all u:User | all  w :u.profile | lone ((w.^((ids.~ids) :> u.profile)) & u.visible)
+inv4 O:     ├──  all u:User | all w1 :u.profile |lone ( (ids.(w1.^ids)) & u.visible)
+inv4 U:     │   └──  all u:User | all disj  w1, w2 :u.profile | w1+w2 in u.visible  implies no (w1.ids & w2.ids)
+inv4 O:     │       └──  all u:User | all disj  w1, w2 :u.profile |  no (w1.ids & w2.ids)
+inv4 U:     │           └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies lone((w1 + w2)& u.visible)
+inv4 O:     │               └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies no((w1 + w2)& u.visible)
+inv4 U:     │                   └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies lone((w1 + w2)& u.visible)
+inv4 B:     │                       └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies one((w1 + w2)& u.visible)
+inv4 U:     │                           └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies lone((w1 + w2)& u.visible)
+inv4 U:     │                               └──  all u:User | all disj  w1, w2 :u.profile | some (w1.ids & w2.ids) implies lone((w1 + w2)& u.visible)
+inv4 O:     │                                   └──  all u:User | all  w :u.profile |lone (ids.(w.ids) & u.visible)
+inv4 T:     │                                       └──  all u:User | all  w :u.profile |lone (ids.^(w.ids) & u.visible)
+inv4 S:     │                                           └──  all u:User | all  w :u.profile |lone (ids^.(w.ids) & u.visible)
+inv4 O:     │                                               └──  all u:User | all  w :u.profile |lone (ids.(w.ids) & u.visible)
+inv4 O:     │                                                   └──  all u:User | all  w :u.profile |one (ids.(w.ids) & u.visible)
+inv4 O:     │                                                       └──  all u:User | all  w :u.profile |lone (ids.(w.ids) & u.visible)
+inv4 S:     │                                                           └──  all u:User | all  w :u.profile |lone (ids.(w.ids)) & u.visible)
+inv4 O:     │                                                               └──  all u:User | all  w :u.profile |lone (ids.(w.ids) & u.visible)
+inv4 O:     │                                                                   └──  all u:User | all  w :u.profile |lone (ids.(w.ids) & u.visible)
+inv4 O:     │                                                                       └──  all u:User | all  w :u.profile | lone (w.^(ids.~ids) & u.visible )
+inv4 O:     │                                                                           └──  all u:User | all  w :u.profile | lone  (w.^(ids.~ids) & u.visible )
+inv4 O:     │                                                                               └──  all u:User | all  w :u.profile | lone  ((w.^(ids.~ids) & u.profile) & u.visible )
+inv4 O:     │                                                                                   └──  all u:User | all  w :u.profile | lone  (w.^(ids.~ids) & u.visible )
+inv4 T:     │                                                                                       └──  all u:User | all  w :u.profile |   (w.^(ids.~ids) & u.visible)
+inv4 O:     │                                                                                           └──  all u:User | all  w :u.profile | lone  (w.^(ids.~ids) & u.visible)
+inv4 O:     │                                                                                               └──  all u:User | all  w :u.profile | lone  (w.^(ids.~ids) & u.visible)
+inv4 T:     │                                                                                                   └──  all u:User | all  w :u.profile |  lone ((w.^(ids.~ids) & u.visible).ids :> (w.^(ids.~ids) & u.visible).ids  in iden )
+inv4 T:     │                                                                                                       └──  all u:User | all  w :u.profile |  lone ((w.^(ids.~ids) & u.visible).ids :> (w.^(ids.~ids) & u.visible).ids ) & iden
+inv4 O:     │                                                                                                           └──  all u:User | all  w :u.profile | lone (w.^(ids.~ids) & u.visible)
+inv4 O:     │                                                                                                               └──  all u:User | all  w :u.profile | lone (w.^(ids.~ids) & u.profile) & u.visible
+inv4 C:     │                                                                                                                   └──  all u:User | all  w :u.profile | lone ((w.^((ids.~ids) :> u.profile)) & u.visible)
+inv4 C:     ├──  all u: User, disj w1, w2 : u.visible | no w1->w2 & ^((u.profile<:ids).~(u.profile<:ids))
+inv1 C:     ├──  visible = (visible & profile)
+inv2 C:     │   └──  all u : User | (u.profile).source in (Institution + u)
+inv3 C:     │       └──  all w1, w2 : Work, u : User {     (w1 != w2 and ((w1 + w2) in u.profile) and w1.source = w2.source) implies no (w1.ids & w2.ids)
+inv3 C:     │           └──  all u : User, disj w1, w2 : u.profile {     (w1.source = w2.source) implies no (w1.ids & w2.ids)
+inv4 B:     │               └──  all u : User, disj id1, id2 : u.visible.ids | no (id1.~ids & id2.~ids)
+inv4 O:     │                   └──  all u : User, id : u.visible.ids | one (id.~ids)
+inv4 T:     │                       └──  all u : User, id : u.visible.ids | one (id.~(u.visible.ids))
+inv4 T:     │                           └──  all u : User, id : u.visible.ids | one ((u.visible.ids).id)
+inv4 U:     │                               └──  all u : User, id : u.visible.ids | one ((u.visible.ids) & id)
+inv4 O:     │                                   └──  all u : User, id : u.visible.ids | one (id.~ids)
+inv4 B:     │                                       └──  all u : User, id : u.visible.ids | one (id.~ids & u.visible)
+inv4 O:     │                                           └──  all u : User, id : u.visible.ids | one (id.~ids & u.profile)
+inv4 B:     │                                               └──  all u : User, id : u.visible.ids | one (id.~ids & u.visible)
+inv4 O:     │                                                   └──  all u : User, id : u.visible.ids | one (id.~ids & u.profile)
+inv1 C:     ├──  visible in profile
+inv2 S:     │   └──  User.profile.sorce in iden:>(User + Institution)
+inv2 T:     │       └──  User.profile.source in iden:>(User + Institution)
+inv2 O:     │           └──  profile.source in iden:>(User + Institution)
+inv2 U:     │               └──  User.profile.source in User.iden + Institution
+inv2 C:     │                   └──  profile.source in iden + User->Institution
+<<<<<<< HEAD
+MEcoDWG8jm3ngmaT4 N:     │                       └──  user added extra characters to pred name
+=======
+inv3 U:     │                       └──  
+>>>>>>> 61e1676bc22bed3288d554850d364801014318e0
+inv2 C:     │                           └──  profile.source in iden + User->Institution
+inv2 C:     │                               └──  profile.source in iden + User->Institution
+inv3 B:     │                                   └──  all s : Source | profile.(source.s<:ids.~(source.s<:ids)).~profile in iden
+inv1 C:     ├──  visible in profile
+inv2 S:     │   └──  User.profile.source in (User + Instituition)
+inv2 U:     │       └──  User.profile.source in (User + Institution)
+inv2 S:     │           └──  all u : User, p : u.profile | w.source = u || w.source in Institution
+inv2 C:     │               └──  all u : User, w : u.profile | w.source = u || w.source in Institution
+inv2 T:     │                   └──  all u : User, w : u.profile | w.source = u || some w.source.Institution
+inv2 C:     │                       └──  all u : User, w : u.profile | w.source = u || some (w.source) & Institution
+inv3 T:     │                           └──  let R = User.profile | R.~R in iden
+inv3 O:     │                               └──  let R = User.profile <: ids | R.~R in iden
+inv3 B:     │                                   └──  all u : User, disj w, w1 : u.profile | w.ids != w1.ids
+inv1 B:     ├──  some (User.profile & User.visible)
+inv1 U:     │   └──  all w : Work | w in User.visible implies w in User.profile
+inv1 C:     │       └──  all w : Work, u : User | w in u.visible implies w in u.profile
+inv2 O:     │           └──  all u : User , s : u.profile | s.source = u or s.source = Institution
+inv2 S:     │               └──  all u : User , s : u.profile | s.source = u or s.source = one Institution
+inv2 C:     │                   └──  all u : User , s : u.profile | some (s.source & u) or some (s.source & Institution)
+inv3 T:     │                       └──  None
+inv3 O:     │                           └──  all u1 : User , w1,w2 :u1.profile | w1.source = w2.source implies no (w1.ids & w2.ids)
+inv3 O:     │                               └──  all u1 : User , w1,w2 :u1.profile | some (w1.source & w2.source) implies no (w1.ids & w2.ids)
+inv3 O:     │                                   └──  all u1 : (User + Institution) , w1,w2 :u1.profile | some (w1.source & w2.source) implies no (w1.ids & w2.ids)
+inv3 O:     │                                       └──  all u1 : User , w1,w2 :u1.profile | one (w1.source & w2.source) implies no (w1.ids & w2.ids)
+inv3 T:     │                                           └──  all u1 : User , w1,w2 :u1.profile |  (w1.source & w2.source) implies no (w1.ids & w2.ids)
+inv3 B:     │                                               └──  one  u1 : User |all  w1,w2 :u1.profile | w1.source = w2.source implies no (w1.ids & w2.ids)
+inv3 C:     │                                                   └──  all u1 : User , disj w1,w2 :u1.profile | w1.source = w2.source implies no (w1.ids & w2.ids)
+inv4 O:     │                                                       └──  all u :User , v1,v2 : u.visible | v1 != v2
+inv4 S:     │                                                           └──  disj (User.visible)
+inv4 S:     │                                                               └──  all u :User, disj v1,v2 : u.visible
+inv4 U:     │                                                                   └──  all u :User, disj v1,v2 : u.visible | v1 != v2
+inv4 B:     │                                                                       └──  all u :User, disj v1,v2 : u.visible | no (v1.ids & v2.ids)
+inv4 O:     │                                                                           └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids)
+inv4 B:     │                                                                               └──  all u :User, disj v1,v2 : u.visible | no (v1.ids & v2.ids)
+inv4 O:     │                                                                                   └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids)
+inv4 T:     │                                                                                       └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids) and no (v1.source = v2.source)
+inv4 S:     │                                                                                           └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids) and v1.source != v2.source)
+inv4 O:     │                                                                                               └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids) and v1.source != v2.source
+inv4 O:     │                                                                                                   └──  all u :User, v1,v2 : u.visible | no (v1.ids & v2.ids) and v1.source != v2.source
+inv4 U:     │                                                                                                       └──  all u :User, v1,v2 : u.visible | v1.source = v2.source implies no (v1.visible & v2.visible)
+inv4 O:     │                                                                                                           └──  all u :User, v1,v2 : u.visible | v1.source = v2.source implies no (v1.ids & v2.ids)
+inv4 O:     │                                                                                                               └──  all u :User, v1,v2 : u.visible |  no (v1.ids & v2.ids)
+inv4 B:     │                                                                                                                   └──  all u :User,disj v1,v2 : u.visible |  no (v1.ids & v2.ids)
+inv4 B:     │                                                                                                                       └──  all u :User,disj v1,v2 : u.visible |  v1.source = v2.source implies v1.ids not in v2.ids
+inv4 U:     │                                                                                                                           └──  all u :User,disj v1,v2 : u.visible |  v1 != v2
+inv4 O:     │                                                                                                                               └──  all u :User, v1,v2 : u.visible |  v1 != v2
+inv4 O:     │                                                                                                                                   └──  all u :User, v1,v2 : u.visible |  v1.ids not in v2.ids
+inv4 O:     │                                                                                                                                       └──  all u :User, v1,v2 : u.visible |  v1.source = v2.source implies v1.ids not in v2.ids
+inv4 B:     │                                                                                                                                           └──  all u :User,disj v1,v2 : u.visible |  v1.source = v2.source implies v1.ids not in v2.ids
+inv4 O:     │                                                                                                                                               └──  all u :User, v1,v2 : u.visible |  v1.source = v2.source implies v1.ids not in v2.ids
+inv1 C:     ├──  visible in profile
+inv2 C:     │   └──  all u: User | (u.profile).source in u + Institution
+inv3 C:     │       └──  all u: User, s: Source | all disj  w1,w2 : u.profile & source.s | no w1.ids & w2.ids
+3G9vWzoGdnh3CiBDz M:     │           └──  user added theme options. same as previous submission
+inv1 S:     ├──  all w : Work | w in User.visible implies w in User.Profile
+inv1 U:     │   └──  all w : Work | w in User.visible implies w in User.profile
+inv1 C:     │       └──  all w : Work, u : User | w in u.visible implies w in u.profile
+inv2 O:     │           └──  all u : User , w : Work | w in u.profile implies (w.source = u or w.source = Institution)
+inv2 B:     │               └──  all u : User , w : Work, i : Institution | w in u.profile implies (w.source = u or w.source = i)
+inv2 B:     │                   └──  all u : User , w : Work, i : Institution | always(w in u.profile implies (w.source = u or w.source = i))
+inv2 S:     │                       └──  all u : User, i : Institution, w : u.profile | always( w.source =u or w.source = Institucion)
+inv2 B:     │                           └──  all u : User, i : Institution, w : u.profile | always( w.source =u or w.source = Institution)
+inv2 B:     │                               └──  one u : User | all i : Institution, w : u.profile | always( w.source =u or w.source = Institution)
+inv2 O:     │                                   └──  all w : Work , u : User | w in u.profile implies always (w.source = u or w.source = Institution)
+inv2 O:     │                                       └──  all disj w : Work , u : User | w in u.profile implies always (w.source = u or w.source = Institution)
+inv3 O:     │                                           └──  all w1,w2: Work | w1.source = w2.source implies always no (w1.ids + w2.ids)
+inv3 O:     │                                               └──  all w1,w2: Work | no (w1.ids + w2.ids)
+inv4 S:     │                                                   └──  all u : User |
+inv3 O:     │                                                       └──  all w1,w2: Work | no (w1.ids & w2.ids)
+inv3 O:     │                                                           └──  all w1,w2: Work | w1.source = w2.source implies always no (w1.ids & w2.ids)
+inv4 T:     │                                                               └──  all disj w:Work | w in profile
+inv4 B:     │                                                                   └──  all disj w:Work | w in User.profile
+inv1 C:     ├──  visible in profile
+inv4 U:     │   └──  all u : User, disj w1, w2 : u.visible | w1 + w2 in u.profile => no w1.ids & w2.ids
+inv4 O:     │       └──  all u : User, disj w1, w2 : u.visible + u.profile | w1 + w2 in u.profile => no w1.ids & w2.ids
+inv4 O:     │           └──  all u : User, disj w1, w2 : u.profile | w1 + w2 in u.profile => no w1.ids & w2.ids
+inv4 U:     │               └──  all u : User, disj w1, w2 : u.visible | w1 + w2 in u.profile => no w1.ids & w2.ids
+inv4 O:     │                   └──  all u : User, w : u.visible | no (u.profile - w).ids & w.ids
+inv4 B:     │                       └──  all u : User, w : u.visible | no (u.visible - w).ids & w.ids
+inv4 B:     │                           └──  all u : User, w : u.visible | no (u.visible & u.profile - w).ids & w.ids
+inv4 B:     │                               └──  all u : User, w : u.visible | no ((u.visible & u.profile) - w).ids & w.ids
+inv4 O:     │                                   └──  all u : User, w : u.visible | no ((u.visible + u.profile) - w).ids & w.ids
+inv4 O:     │                                       └──  all u : User, w : u.visible | no (u.profile - w).ids & w.ids
+inv4 C:     │                                           └──  all u: User | (u.visible->u.visible) & ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 C:     │                                               └──  all u: User | (u.visible->u.visible) & *((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 C:     │                                                   └──  all u: User | (u.visible->u.visible) & ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 C:     │                                                       └──  all u: User | ((u.visible->u.visible) & ^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 S:     │                                                           └──  all u: User, w1, w2 : u.visible | (w1->w2) & ^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 S:     │                                                               └──  all u: User, w1, w2 : u.visible | (w1->w2) & ^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 S:     │                                                                   └──  all u: User | all w1, w2 : u.visible | (w1->w2) & ^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 S:     │                                                                       └──  all u: User | (u.visible->u.visible) & ^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 C:     │                                                                           └──  all u: User | (u.visible->u.visible) & ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 C:     │                                                                               └──  all u: User, w1, w2 : u.visible | (w1->w2) & ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv4 C:     │                                                                                   └──  all u: User, disj w1, w2 : u.visible | no (w1->w2) & ^((u.profile<:ids).~(u.profile<:ids))
+inv4 C:     │                                                                                       └──  all u: User, disj w1, w2 : u.visible | no w1->w2 & ^((u.profile<:ids).~(u.profile<:ids))
+inv1 C:     ├──  visible in profile
+inv2 S:     │   └──  all u : User | u.profile + some Work implies source in u+Institution
+inv2 S:     │       └──  all u : User | profile.u + some Work implies source in u+Institution
+inv2 T:     │           └──  all u : User, w: Work | w.source -> u or w.source -> Institution
+inv2 T:     │               └──  all u : User, w: Work | w.source -> u or w.source -> Institution
+inv2 T:     │                   └──  all u : User, w: Work | w.source -> u.profile or w.source -> Institution
+inv2 T:     │                       └──  all u : User, w: Work | u->w implies w->u or w-> Institution
+inv2 S:     │                           └──  work.source = u or work.source = Institution
+inv2 S:     │                               └──  Work.source = u or Work.source = Institution
+inv2 B:     │                                   └──  Work.source = User or Work.source = Institution
+inv2 O:     │                                       └──  all u : User | Work.source = u or Work.source = Institution
+inv2 S:     │                                           └──  all w : Work | w.source = u or w.source = Institution
+inv2 O:     │                                               └──  all w : Work | w.source = User or w.source = Institution
+inv1 U:     ├──  all w:Work | w.visible in w.profile
+inv1 C:     │   └──  all u:User | u.visible in u.profile
+inv2 O:     │       └──  all u:User| u.profile.source = u + Institution
+inv2 O:     │           └──  all u:User| some i:Institution | u.profile.source = u + i
+inv2 T:     │               └──  all u:User| some i:Institution | no u.profile.source in u + i
+inv2 T:     │                   └──  all u:User| some i:Institution | no u.profile.source in u & i
+inv2 T:     │                       └──  all u:User| some i:Institution | no u.profile.source = u&i
+inv2 T:     │                           └──  all u:User| all i:Institution | no u.profile.source = u&i
+inv2 T:     │                               └──  all u:User| no u.profile.source = u&Institution
+inv2 T:     │                                   └──  all u:User| no u.profile.source in u&Institution
+inv2 C:     │                                       └──  all u:User| u.profile.source in (u + Institution)
+inv3 O:     │                                           └──  all w1,w2:Work | profile.w1.ids = profile.w2.ids implies w1=w2
+inv2 C:     │                                               └──  all u:User| u.profile.source in (u + Institution)
+inv1 C:     │                                                   └──  all u:User | u.visible in u.profile
+inv3 B:     │                                                       └──  all w1,w2 : User.profile | w1.ids = w2.ids implies w1=w2
+inv3 O:     │                                                           └──  all w : User.profile | all id1,id2 : Id | id1 in w.ids implies id2 not in w.ids
+inv3 O:     │                                                               └──  some w : User.profile | all id1,id2 : Id | id1 in w.ids implies id2 not in w.ids
+inv3 O:     │                                                                   └──  all u:User | all id1,id2 : Id | id1 in u.profile.ids implies id2 not in u.profile.ids
+inv3 T:     │                                                                       └──  all u:User | all id1,id2 : Id | no u.profile.id1 & u.profile.id2
+inv4 S:     │                                                                           └──  all w1,w2 : User.profile | visible.w1 = visible.s2 implies w1=w2
+inv4 B:     │                                                                               └──  all w1,w2 : User.profile | visible.w1 = visible.w2 implies w1=w2
+inv3 B:     │                                                                                   └──  all u:User| one u.profile.ids
+inv3 B:     │                                                                                       └──  all u:User| lone u.profile.ids
+inv3 O:     │                                                                                           └──  all w1,w2 : User.profile | w1.ids != w2.ids
+inv3 B:     │                                                                                               └──  all w1,w2 : User.profile | w1.ids = w2.ids implies w1=w2
+inv3 S:     │                                                                                                   └──  all u:User | w1,w2 : u.profile | w1.ids = w2.ids implies w1=w2
+inv3 S:     │                                                                                                       └──  all u:User and some w1,w2:u.profile | no User
+inv3 S:     │                                                                                                           └──  all u:User | (all w1,w2 :u.profile |w1.ids = w2.ids implies w1=w2))
+inv3 O:     │                                                                                                               └──  all u:User | all w1,w2 : Work | (w1 in u.profile and w2 in u.profile) implies (w1.ids != w2.ids)
+inv3 S:     │                                                                                                                   └──  all u:User | all w1,w2 : Work | (w1 in u.profile and w2 in u.profile and w1.ids=w2.ids) implies w1=w2)
+inv3 B:     │                                                                                                                       └──  all u:User | all w1,w2 : Work | (w1 in u.profile and w2 in u.profile and w1.ids=w2.ids) implies w1=w2
+inv3 O:     │                                                                                                                           └──  all u:User | all w1,w2 : Work | (w1 in u.profile and w2 in u.profile) implies w1.ids != w2.ids
+inv3 S:     │                                                                                                                               └──  id1,id2 : Id | all u:User | (id1.ids in u.profile and id2.ids in u.profile) implies id1!=id2
+inv3 S:     │                                                                                                                                   └──  id1,id2 : Id | all u:User | (id1.ids in u.profile and id2.ids in u.profile) implies id1!=id2
+inv3 O:     │                                                                                                                                       └──  all id1,id2 : Id | all u:User | (id1.ids in u.profile and id2.ids in u.profile) implies id1!=id2
+inv3 B:     │                                                                                                                                           └──  all w1,w2 : Source.profile | w1.ids = w2.ids implies w1=w2
+inv3 B:     │                                                                                                                                               └──  all w1,w2 : Source.profile | w1.ids = w2.ids implies w1=w2
+inv4 U:     │                                                                                                                                                   └──  all u:User | lone u.profile.visible
+inv4 B:     │                                                                                                                                                       └──  all u:User | lone visible.(u.profile)
+inv4 B:     │                                                                                                                                                           └──  all u:User | one visible.(u.profile)
+inv4 B:     │                                                                                                                                                               └──  all u:User | some visible.(u.profile)
+inv4 S:     │                                                                                                                                                                   └──  all w1,w2:Work | w1 in visible.(u.profile) and w2 in visible.(u.profile) implies w1=w2
+inv4 U:     │                                                                                                                                                                       └──  all w1,w2:Work | w1 in visible.(User.profile) and w2 in visible.(User.profile) implies w1=w2
+inv4 S:     ├──  always (all u : User | all  disj v1 v2 : u.visible | not v1.id = v2.id)
+inv4 S:     │   └──  always all u : User, all  disj v1 v2 : u.visible | not v1.id = v2.id
+inv4 S:     │       └──  always all u : User, disj v1 v2 : u.visible | not v1.id = v2.id
+inv4 S:     │           └──  always all u : User, disj v1 v2 : u.visible | not v1.ids & v2.ids
+inv4 S:     │               └──  always all u : User | all disj v1 v2 : u.visible | not v1.ids & v2.ids
+inv4 S:     │                   └──  always all u : User | all disj v1 v2 : u.visible | not (v1.ids & v2.ids)
+inv4 S:     │                       └──  always all u : User, disj v1 v2 : u.visible | not (v1.ids & v2.ids)
+inv4 S:     │                           └──  always (all u : User, disj v1 v2 : u.visible | not (v1.ids & v2.ids))
+inv4 T:     │                               └──  always (all u : User | all disj v1, v2 : u.visible | not (v1.ids & v2.ids))
+inv4 B:     │                                   └──  always (all u : User | all disj v1, v2 : u.visible | no (v1.ids & v2.ids))
+inv4 S:     │                                       └──  always (all u : User | all disj v1, v2 : u.visible | implies no (v1.ids & v2.ids))
+inv4 B:     │                                           └──  always (all u : User | all disj v1, v2 : u.visible | no (v1.ids & v2.ids))
+inv4 U:     │                                               └──  always (all u : User | all disj v1, v2 : (u.profile & u.visible) | no (v1.ids & v2.ids))
+inv4 O:     │                                                   └──  always (all u : User | all disj v1, v2 : u.profile | no (v1.ids & v2.ids))
+inv4 U:     │                                                       └──  always (all u : User | all disj v1, v2 : (u.profile & u.visible) | no (v1.ids & v2.ids))
+inv4 U:     │                                                           └──  always (all u : User | all disj vis : u.visible | no (vis.ids & (u.profile - vis)))
+inv4 S:     │                                                               └──  always (all u : User, vis : u.visible, v : (u.profile - vis)| no (vis.ids & v.ids)
+inv4 O:     │                                                                   └──  always (all u : User, vis : u.visible, v : (u.profile - vis) | no (vis.ids & v.ids))
+inv4 B:     │                                                                       └──  always (all u : User, vis : u.visible, v : (u.visible - vis) | no (vis.ids & v.ids))
+inv4 U:     │                                                                           └──  always (all u : User | all disj v1, v2 : (u.profile & u.visible) | no (v1.ids & v2.ids))
+inv4 B:     │                                                                               └──  always (all u : User | all disj v1, v2 : u.visible | no (v1.ids & v2.ids))
+inv1 C:     │                                                                                   └──  always (all u : User, v : u.visible | v in u.profile)
+inv2 S:     │                                                                                       └──  always (all u : User, p : u.profule | p.source in u+Institution)
+inv2 C:     │                                                                                           └──  always (all u : User, p : u.profile | p.source in u+Institution)
+inv3 U:     │                                                                                               └──  always (all u : User, p : u.profile | some p.ids)
+inv3 O:     │                                                                                                   └──  always (all u : User, p : u.profile | no p.ids & Id)
+inv4 O:     │                                                                                                       └──  always (all u : User | all disj v1, v2 : u.profile | (v1 + v2) not in u.visible)
+inv4 U:     │                                                                                                           └──  always (all u : User | all disj v1, v2 : u.profile | v1.ids = v2.ids implies ((v1 + v2) not in u.visible))
+inv4 U:     │                                                                                                               └──  always (all u : User | all disj v1, v2 : u.profile | some (v1.ids & v2.ids) implies ((v1 + v2) not in u.visible))
+inv4 O:     │                                                                                                                   └──  always (all u : User | all disj v1, v2 : u.visible | some (v1.ids + v2.ids) implies ((v1.ids + v2.ids) not in u.visible.ids))
+inv4 S:     │                                                                                                                       └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - (v1 + v2) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids)
+inv4 S:     │                                                                                                                           └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - (v1 + v2) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 B:     │                                                                                                                               └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - (v1 + v2)) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 S:     │                                                                                                                                   └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - v1 - v2)) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 B:     │                                                                                                                                       └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - v1 - v2) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 B:     │                                                                                                                                           └──  always (all u : User, disj v1, v2 : u.visible | all v : (u.profile - v1 - v2) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 B:     │                                                                                                                                               └──  always (all u : User, disj v1, v2 : u.visible, v : (u.profile - v1 - v2) | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 O:     │                                                                                                                                                   └──  always (all u : User, disj v1, v2 : u.visible, v : u.profile | (no v1.ids & v2.ids) and (v1.ids + v2.ids in v.ids))
+inv4 O:     │                                                                                                                                                       └──  always (all u : User, disj v1, v2 : u.visible, v : u.profile | (no (v1.ids & v2.ids)) and (v1.ids + v2.ids in v.ids))
+inv4 B:     │                                                                                                                                                           └──  always (all u : User, disj v1, v2 : u.visible, v : u.profile | (no (v1.ids & v2.ids)) and (v1.ids + v2.ids not in v.ids))
+inv4 B:     │                                                                                                                                                               └──  always (all u : User, disj v1, v2 : u.visible, v : u.profile - v1 - v2 | (no (v1.ids & v2.ids)) and v1.ids not in v.ids and v2.ids not in v.ids)
+inv4 B:     │                                                                                                                                                                   └──  always (all u : User, disj v1, v2 : u.visible, v : (u.profile - v1 - v2) | (no (v1.ids & v2.ids)) and v1.ids not in v.ids and v2.ids not in v.ids)
+inv4 B:     │                                                                                                                                                                       └──  always (all u : User, disj v1, v2 : u.visible, v : (u.profile - v1 - v2) | (no (v1.ids & v2.ids)) and (no v1.ids & v.ids) and  no v2.ids & v.ids)
+inv4 B:     │                                                                                                                                                                           └──  always (all u : User, disj v1, v2 : u.visible, v : (u.profile - v1 - v2) | (no (v1.ids & v2.ids)) and (no v1.ids & v.ids) and no v2.ids & v.ids)
+inv4 B:     │                                                                                                                                                                               └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - v1 - v2) | (no v1.ids & v2.ids) and (no v1.ids & v.ids) and no v2.ids & v.ids)
+inv4 B:     │                                                                                                                                                                                   └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - v1 - v2) | (no v1.ids & v2.ids) and (no v1.ids & v.ids) and (no v2.ids & v.ids))
+inv4 B:     │                                                                                                                                                                                       └──  always (all u : User | all disj v1, v2 : u.visible | all v : (u.profile - v1 - v2) | (no (v1.ids & v2.ids)) and (no (v1.ids & v.ids)) and (no (v2.ids & v.ids)))
+inv4 B:     │                                                                                                                                                                                           └──  always (all u : User, disj v1, v2 : u.visible, v : (u.profile - v1 - v2) | (no (v1.ids & v2.ids)) and (no (v1.ids & v.ids)) and (no (v2.ids & v.ids)))
+inv4 S:     │                                                                                                                                                                                               └──  always (all u : User, disj v1, v2 : u.visible | (no (v1.ids & v2.ids)) | all v : (u.profile - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids)))
+inv4 S:     │                                                                                                                                                                                                   └──  always (all u : User, disj v1, v2 : u.visible | (no (v1.ids & v2.ids)) | all v : (u.profile - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))
+inv4 S:     │                                                                                                                                                                                                       └──  always (all u : User, disj v1, v2 : u.visible | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))
+inv4 O:     │                                                                                                                                                                                                           └──  always (all u : User, disj v1, v2 : u.visible | (no (v1.ids & v2.ids)) and (all v : (u.profile - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 O:     │                                                                                                                                                                                                               └──  always (all u : User, disj v1, v2 : u.visible | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 O:     │                                                                                                                                                                                                                   └──  always (all u : User, disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 O:     │                                                                                                                                                                                                                       └──  always (all u : User, disj v1, v2 : u.profile | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 S:     │                                                                                                                                                                                                                           └──  always (all u : User | all disj v1, v2 : (u.vsibile & u.profile) | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 S:     │                                                                                                                                                                                                                               └──  always (all u : User | all disj v1, v2 : (u.visibile & u.profile) | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 O:     │                                                                                                                                                                                                                                   └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and (all v : (Work - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+inv4 O:     │                                                                                                                                                                                                                                       └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and (all v : (u.profile - v1 - v2) | (no (v1.ids & v.ids)) and (no (v2.ids & v.ids))))
+FD7bYBh5iKXPPpYkv N:     │                                                                                                                                                                                                                                           └──  user added extra characters to pred name
+pZPpABypxaqLBZNAu N:     │                                                                                                                                                                                                                                               └──  user added extra characters to pred name
+En8e54noB37MDAHYo N:     │                                                                                                                                                                                                                                                   └──  user added extra characters to pred name
+g6quMA9pZ6hniju2h N:     │                                                                                                                                                                                                                                                       └──  user added extra characters to pred name
+cGyLmBNEKBpJcEo6H N:     │                                                                                                                                                                                                                                                           └──  user added extra characters to pred name
+aTKAWuJcPFmFWcqmF N:     │                                                                                                                                                                                                                                                               └──  user added extra characters to pred name
+49JEzWJ7QxFY4DPAx N:     │                                                                                                                                                                                                                                                                   └──  user added extra characters to pred name
+tgbHZ52KAvYTqHcFn N:     │                                                                                                                                                                                                                                                                       └──  user added extra characters to pred name
+inv4 O:     │                                                                                                                                                                                                                                                                           └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | no (v1.ids + v2.ids) & v.ids)
+inv4 S:     │                                                                                                                                                                                                                                                                               └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | not (v1.ids = v.ids and v2.ids = v.ids)
+inv4 U:     │                                                                                                                                                                                                                                                                                   └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | not (v1.ids = v.ids and v2.ids = v.ids))
+inv4 U:     │                                                                                                                                                                                                                                                                                       └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | not (v1.ids in v.ids and v2.ids in v.ids))
+inv4 T:     │                                                                                                                                                                                                                                                                                           └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | not (v1.ids & v.ids or v2.ids & v.ids))
+inv4 S:     │                                                                                                                                                                                                                                                                                               └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | (no v1.ids & v.ids) and (no v2.ids & v.ids)
+inv4 O:     │                                                                                                                                                                                                                                                                                                   └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids & v2.ids)) and all v : (u.profile - v1 - v2) | (no v1.ids & v.ids) and (no v2.ids & v.ids))
+inv4 T:     │                                                                                                                                                                                                                                                                                                       └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (no (v1.ids = v2.ids)) and all v : (u.profile - v1 - v2) | (no v1.ids & v.ids) and (no v2.ids & v.ids))
+inv4 B:     │                                                                                                                                                                                                                                                                                                           └──  always (all u : User | all disj v1, v2 : (u.visible & u.profile) | (not (v1.ids = v2.ids)) and all v : (u.profile - v1 - v2) | (no v1.ids & v.ids) and (no v2.ids & v.ids))
+inv4 S:     ├──  all u : User | all disj w1, w2 : (u.visible) | w1.id != w2.id
+inv4 B:     │   └──  all u : User | all disj w1, w2 : (u.visible) | w1.ids != w2.ids
+inv4 B:     │       └──  all u : User | all disj w1, w2 : (u.visible) | all id : w1.ids | id not in w2.ids
+inv4 B:     │           └──  all u : User | all disj w1, w2 : (u.visible) {       	all id : w1.ids | id not in w2.ids       	all id : w2.ids | id not in w1.ids
+inv4 O:     │               └──  all u : User | all disj w1, w2 : (u.profile) {       	all id : w1.ids | id not in w2.ids       	all id : w2.ids | id not in w1.ids
+inv4 B:     │                   └──  all u : User | all disj w1, w2 : (u.visible) {       	all id : w1.ids | id not in w2.ids       	all id : w2.ids | id not in w1.ids
+inv4 B:     │                       └──  all u : User | all disj w1, w2 : (u.visible) {       	all id : w1.ids | id not in w2.ids       	all id : w2.ids | id not in w1.ids
+inv4 O:     │                           └──  all u : User | all disj w1, w2 : (u.profile) {       	all id : w1.ids | id not in w2.ids       	all id : w2.ids | id not in w1.ids
+inv4 O:     │                               └──  all u : User | all disj w1, w2 : (u.profile) {       	all id : w1.ids | id not in w2.ids
+inv4 U:     │                                   └──  all u : User | all w1 : u.visible | all w2 : (u.visible - w1) {     	w1 not in w2
+inv4 U:     │                                       └──  all u : User | all w1 : u.visible | all w2 : (u.visible - w1) {     	w1 not in w2       	w2 not in w1
+inv4 B:     │                                           └──  all u : User | all disj w1, w2 : u.visible {     	no id : w1.ids | id in w2.ids     	no id : w2.ids | id in w1.ids
+inv4 B:     │                                               └──  all u : User | all disj w1, w2 : u.visible {     	no id : w1.ids | id in w2.ids     	no id : w2.ids | id in w1.ids
+inv4 S:     ├──  all u:User, x, y:Work | (x in u.visible and y in u.visible) implies not (x.id = y.id)
+inv4 O:     │   └──  all u:User, x, y:Work | (x in u.visible and y in u.visible) implies no (x.ids & y.ids)
+inv4 O:     │       └──  all u:User, x, y:Work | (x in u.visible and y in u.visible) implies not (x.ids = y.ids)
+inv4 O:     │           └──  all u:User, x, y:Work | (x in u.visible and y in u.visible) implies not (x = y)
+inv4 O:     │               └──  all u:User, x, y:Work | (x in u.visible and y in u.visible and x.source = y.source) implies no (x.ids & y.ids)
+inv4 C:     ├──  all u: User | u.visible<:^((u.profile<:ids).~(u.profile<:ids)).~(u.visible<:^((u.profile<:ids).~(u.profile<:ids))) in iden
+inv4 C:     │   └──  all u: User | u.visible<:^((u.profile<:ids).~(u.profile<:ids)):>u.visible in iden
+inv4 C:     │       └──  all u: User | u.visible->u.visible & ^((u.profile<:ids).~(u.profile<:ids)) in iden
+inv1 C:     ├──  all u:User, v : u.visible | v in u.profile
+inv2 S:     │   └──  all u:User, p:u.profile | p.source in (u+Institution)|
+inv2 O:     │       └──  all u:User, p:u.profile | p.source in u
+inv2 C:     │           └──  all u:User, p:u.profile | p.source in u + Institution
+inv3 U:     │               └──  all u:User, p:u.profile | some p.ids
+inv4 T:     │                   └──  all u:User, p: u.profile | lone p in u.visible
+inv4 T:     │                       └──  all u:User, p: u.profile | lone p in u.visible
+inv4 B:     │                           └──  all u:User, p: u.profile | p in u.visible
+inv1 U:     ├──  User.visible in User.profile
+inv1 C:     │   └──  visible in profile
+inv2 C:     │       └──  all u: User | u.profile.source in (u + Institution)
+inv3 O:     │           └──  all s: Source | all id1, id2: (source.s).ids | id1 != id2
+inv3 O:     │               └──  all s: Source | all id1, id2: ((source.s) & User.profile).ids | id1 != id2
+inv3 O:     │                   └──  all s: Source, u: User | all id1, id2: ((source.s) & u.profile).ids | id1 != id2
+inv3 O:     │                       └──  all s: Source | all id1, id2: ((source.s) & User.profile).ids | id1 != id2
+inv3 U:     │                           └──  all s: Source | all disj id1, id2: ((source.s) & User.profile).ids | id1 != id2
+inv3 B:     │                               └──  all s: Source | all disj w, w1: ((source.s) & User.profile) | w.ids != w1.ids
+inv3 O:     │                                   └──  all s: Source | all disj w, w1: ((source.s) & User.profile) | no (w.ids & w1.ids)
+inv3 C:     │                                       └──  all s: Source, u: User | all disj w, w1: ((source.s) & u.profile) | no (w.ids & w1.ids)
+rZSDM5tCEHd8QkaTx M:     │                                           └──  user added theme options. same as previous submission
+inv1 C:     ├──  visible in profile
+inv4 O:     └──  all u:User | all w1 :u.profile |lone ( w1.^(ids.~ids) & u.visible)
